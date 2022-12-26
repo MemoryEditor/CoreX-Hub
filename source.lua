@@ -5,9 +5,7 @@ local prefix = ";"
 
 local commands = {}
 
-player.CharacterAdded:Connect(function()
-    print("Made by MemoryEd1tor.")
-end)
+print("Made by MemoryEd1tor.")
 
 -- Functions --
 commands.prefix = function()
