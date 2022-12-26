@@ -1,1 +1,1 @@
-# Prison-Life-Script-Hub
+# CoreX Hub
