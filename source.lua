@@ -5,6 +5,10 @@ local prefix = ";"
 
 local commands = {}
 
+player.CharacterAdded:Connect(function()
+    print("Made by MemoryEd1tor.")
+end)
+
 -- Functions --
 commands.prefix = function()
     print("The current prefix is " .. prefix)
