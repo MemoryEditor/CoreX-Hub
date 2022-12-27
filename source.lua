@@ -61,15 +61,12 @@ commands.arrest = function(arguments)
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
 			local _p = string.lower(p.Name)
 			if string.match(_p, v, 1) then
-				local timesToRepeat = 5
-				repeat
 				local Character = workspace[player.Name]
 				local HumanoidRootPart = Character.HumanoidRootPart
 				HumanoidRootPart.CFrame = workspace[p.Name].HumanoidRootPart.CFrame
-				timesToRepeat -= 1
-				print(timesToRepeat)
-				until timesToRepeat == 0
-
+				
+				wait(0.5)
+				
 				local A_1 = game:GetService("Workspace")[p.Name].Torso
 				local Event = game:GetService("Workspace").Remote.arrest
 				Event:InvokeServer(A_1)
