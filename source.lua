@@ -67,6 +67,7 @@ commands.arrest = function(arguments)
 				local HumanoidRootPart = Character.HumanoidRootPart
 				HumanoidRootPart.CFrame = workspace[p.Name].HumanoidRootPart.CFrame
 				timesToRepeat -= 1
+				print(timesToRepeat)
 				until timesToRepeat == 0
 
 				local A_1 = game:GetService("Workspace")[p.Name].Torso
