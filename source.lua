@@ -50,6 +50,7 @@ commands.goto = function(arguments)
 				local Character = workspace[player.Name]
 				local HumanoidRootPart = Character.HumanoidRootPart
 				HumanoidRootPart.CFrame = workspace[p.Name].HumanoidRootPart.CFrame
+				print("done")
 			end
 		end
 	end
