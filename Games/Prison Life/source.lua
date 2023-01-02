@@ -139,6 +139,8 @@ commands.opguns = function()
 		local Remington = game:GetService("Workspace")["Prison_ITEMS"].giver["Remington 870"].ITEMPICKUP
 		Event:InvokeServer(Remington)
 		
+		repeat wait() until backpack:FindFirstChild("AK-47") or character:FindFirstChild("AK-47") and backpack:FindFirstChild("Remington 870") or character:FindFirstChild("Remington 870")
+		
 		local AKGunStates = require(backpack["AK-47"].GunStates) or require(character["AK-47"].GunStates)
 		local RemingtonGunStates = require(backpack["Remington 870"].GunStates) or require(character["Remington 870"].GunStates)
 
