@@ -1,5 +1,6 @@
 local player = game.Players.LocalPlayer
 local backpack = player:WaitForChild("Backpack")
+local character = player.Character
 
 local prefix = ";"
 
@@ -128,21 +129,25 @@ commands.unlooptaze = function(arguments)
 end
 
 commands.opguns = function()
-	local AK = game:GetService("Workspace")["Prison_ITEMS"].giver["AK-47"].ITEMPICKUP
-	local Event = game:GetService("Workspace").Remote.ItemHandler
-	Event:InvokeServer(AK)
+	_G.giveGuns = true
+	
+	while _G.giveGuns == true do
+		local AK = game:GetService("Workspace")["Prison_ITEMS"].giver["AK-47"].ITEMPICKUP
+		local Event = game:GetService("Workspace").Remote.ItemHandler
+		Event:InvokeServer(AK)
 		
-	local Remington = game:GetService("Workspace")["Prison_ITEMS"].giver["Remington 870"].ITEMPICKUP
-	Event:InvokeServer(Remington)
+		local Remington = game:GetService("Workspace")["Prison_ITEMS"].giver["Remington 870"].ITEMPICKUP
+		Event:InvokeServer(Remington)
 		
-	local AKGunStates = require(backpack["AK-47"].GunStates)
-	local RemingtonGunStates = require(backpack["Remington 870"].GunStates)
+		local AKGunStates = require(backpack["AK-47"].GunStates) or require(character["AK-47"].GunStates)
+		local RemingtonGunStates = require(backpack["Remington 870"].GunStates) or require(character["Remington 870"].GunStates)
 
-	AKGunStates.CurrentAmmo = math.huge
-	AKGunStates.MaxAmmo = math.huge
-	AKGunStates.StoredAmmo = math.huge
-	AKGunStates.ReloadTime = 0 
-	AKGunStates.FireRate = 0
+		AKGunStates.CurrentAmmo = math.huge
+		AKGunStates.MaxAmmo = math.huge
+		AKGunStates.StoredAmmo = math.huge
+		AKGunStates.ReloadTime = 0 
+		AKGunStates.FireRate = 0
+	end
 end
 
 --[[
