@@ -172,7 +172,7 @@ local function NWXT_fake_script()
 	
 	MM2.MouseButton1Click:Connect(function()
 		if game.PlaceId == 142823291 then
-			print("MM2")
+			loadstring(game:HttpGet(("https://raw.githubusercontent.com/MemoryEditor/CoreX-Hub/main/Games/MM2/source.lua")))()
 			CoreXLoader:Destroy()
 		end
 	end)
