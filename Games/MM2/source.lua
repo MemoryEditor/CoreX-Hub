@@ -183,7 +183,7 @@ local function AUIQW_fake_script()
 	local script = Instance.new("LocalScript", game.Players.LocalPlayer.PlayerScripts)
 	
 	while wait() do
-		if not game.Players.LocalPlayer:FindFirstChild("CoreXMM2") then
+		if not game.Players.LocalPlayer.PlayerGui:FindFirstChild("CoreXMM2") then
 			loadstring(game:HttpGet(("https://raw.githubusercontent.com/MemoryEditor/CoreX-Hub/main/Games/MM2/source.lua")))()
 			return	
 		end
