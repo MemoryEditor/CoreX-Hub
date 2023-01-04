@@ -149,6 +149,7 @@ local function XCLAYHJ_fake_script()
 				end
 			end
 		else
+			enabled = false
 			_G.farmCoins = false
 		end
 	end)
