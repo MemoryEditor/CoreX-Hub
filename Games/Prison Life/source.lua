@@ -144,11 +144,11 @@ commands.opguns = function()
 		local AKGunStates = require(backpack["AK-47"].GunStates) or require(character["AK-47"].GunStates)
 		local RemingtonGunStates = require(backpack["Remington 870"].GunStates) or require(character["Remington 870"].GunStates)
 
-		AKGunStates.CurrentAmmo = math.huge
-		AKGunStates.MaxAmmo = math.huge
-		AKGunStates.StoredAmmo = math.huge
-		AKGunStates.ReloadTime = 0 
-		AKGunStates.FireRate = 0
+		AKGunStates.CurrentAmmo = 90000000
+		AKGunStates.MaxAmmo = 90000000
+		AKGunStates.StoredAmmo = 90000000
+		AKGunStates.ReloadTime = 0.01
+		AKGunStates.FireRate = 0.01
 	end
 end
 
