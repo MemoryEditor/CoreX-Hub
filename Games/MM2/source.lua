@@ -173,6 +173,8 @@ local function SNIMI_fake_script()
 				murdererLabel.Text = v.Name
 			elseif v.Backpack:FindFirstChild("Gun") or character:FindFirstChild("Gun") then
 				sheriffLabel.Text = v.Name
+			else
+				return
 			end
 		end
 	end
