@@ -169,9 +169,9 @@ local function SNIMI_fake_script()
 		for i,v in ipairs(players:GetChildren()) do
 			local character = v.Character
 
-			if v.Backpack:FindFirstChild("Knife") or character:FindFirstChild("Knife") then
+			if v.Backpack:FindFirstChild("Knife") ~= nil or character:FindFirstChild("Knife") ~= nil then
 				murdererLabel.Text = v.Name
-			elseif v.Backpack:FindFirstChild("Gun") or character:FindFirstChild("Gun") then
+			elseif v.Backpack:FindFirstChild("Gun") ~= nil or character:FindFirstChild("Gun") ~= nil then
 				sheriffLabel.Text = v.Name
 			else
 				murdererLabel.Text = ""
