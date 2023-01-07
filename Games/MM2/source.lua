@@ -173,9 +173,6 @@ local function SNIMI_fake_script()
 				murdererLabel.Text = v.Name
 			elseif v.Backpack:FindFirstChild("Gun") ~= nil or character:FindFirstChild("Gun") ~= nil then
 				sheriffLabel.Text = v.Name
-			else
-				murdererLabel.Text = ""
-				sheriffLabel.Text = ""
 			end
 		end
 	end
