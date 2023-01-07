@@ -77,116 +77,99 @@ FarmCoinsButton.Text = "Farm Coins"
 FarmCoinsButton.TextColor3 = Color3.fromRGB(204, 204, 204)
 FarmCoinsButton.TextSize = 14.000
 
-local function SFDQVB_fake_script()
-	local script = Instance.new('LocalScript', Background)
+local Drag = script.Parent
+local gsCoreGui = game:GetService("CoreGui")
+local gsTween = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+local dragging
+local dragInput
+local dragStart
+local startPos
 
-	local Drag = script.Parent
-	local gsCoreGui = game:GetService("CoreGui")
-	local gsTween = game:GetService("TweenService")
-	local UserInputService = game:GetService("UserInputService")
-	local dragging
-	local dragInput
-	local dragStart
-	local startPos
-	local function update(input)
-		local delta = input.Position - dragStart
-		local dragTime = 0.04
-		local SmoothDrag = {}
-		SmoothDrag.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-		local dragSmoothFunction = gsTween:Create(Drag, TweenInfo.new(dragTime, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), SmoothDrag)
-		dragSmoothFunction:Play()
-	end
-	Drag.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = true
-			dragStart = input.Position
-			startPos = Drag.Position
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragging = false
-				end
-			end)
-		end
-	end)
-	Drag.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			dragInput = input
-		end
-	end)
-	UserInputService.InputChanged:Connect(function(input)
-		if input == dragInput and dragging and Drag.Size then
-			update(input)
-		end
-	end)
-
+local function update(input)
+	local delta = input.Position - dragStart
+	local dragTime = 0.04
+	local SmoothDrag = {}
+	SmoothDrag.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	local dragSmoothFunction = gsTween:Create(Drag, TweenInfo.new(dragTime, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), SmoothDrag)
+	dragSmoothFunction:Play()
 end
-coroutine.wrap(SFDQVB_fake_script)()
-local function XCLAYHJ_fake_script()
-	local script = Instance.new('LocalScript', FarmCoinsButton)
 
-	local farmCoinsButton = script.Parent
+Drag.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = Drag.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)	
+	end
+end)
 
-	local player = game.Players.LocalPlayer
-	local character = player.Character
+Drag.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
 
-	local enabled = false
+UserInputService.InputChanged:Connect(function(input)
+	if input == dragInput and dragging and Drag.Size then
+		update(input)
+	end
+end)
 
-	farmCoinsButton.MouseButton1Click:Connect(function()
-		if enabled == false then
-			enabled = true
-			_G.farmCoins = true
+local farmCoinsButton = script.Parent
 
-			while _G.farmCoins == true do
-				wait()
-				for i,v in ipairs(workspace:GetChildren()) do
-					if v:FindFirstChild("CoinContainer") then
-						for _,coin in pairs(v.CoinContainer:GetChildren()) do
-							if coin.Name == "Coin_Server" then
-								wait(2.5)
-								character.HumanoidRootPart.CFrame = coin.CFrame
-							end
+local player = game.Players.LocalPlayer
+local character = player.Character
+
+local enabled = false
+
+farmCoinsButton.MouseButton1Click:Connect(function()
+	if enabled == false then
+		enabled = true
+		_G.farmCoins = true
+
+		while _G.farmCoins == true do
+			wait()
+			for i,v in ipairs(workspace:GetChildren()) do
+				if v:FindFirstChild("CoinContainer") then
+					for _,coin in pairs(v.CoinContainer:GetChildren()) do
+						if coin.Name == "Coin_Server" then
+							wait(2.5)
+							character.HumanoidRootPart.CFrame = coin.CFrame
 						end
 					end
 				end
 			end
-		else
-			enabled = false
-			_G.farmCoins = false
 		end
-	end)
-end
-coroutine.wrap(XCLAYHJ_fake_script)()
-local function SNIMI_fake_script()
-	local script = Instance.new('LocalScript', Background)
-
-	local back = script.Parent
-	local murdererLabel = back.MurdererLabel
-	local sheriffLabel = back.SheriffLabel
-
-	local players = game:GetService("Players")
-
-	while wait() do
-		for i,v in ipairs(players:GetChildren()) do
-			local character = v.Character
-
-			if v.Backpack:FindFirstChild("Knife") ~= nil or character:FindFirstChild("Knife") ~= nil then
-				murdererLabel.Text = v.Name
-			elseif v.Backpack:FindFirstChild("Gun") ~= nil or character:FindFirstChild("Gun") ~= nil then
-				sheriffLabel.Text = v.Name
-			end
-		end
+	else
+		enabled = false
+		_G.farmCoins = false
 	end
-end
-coroutine.wrap(SNIMI_fake_script)()
+end)
 
-local function AUIQW_fake_script()
-	local script = Instance.new("LocalScript", game.Players.LocalPlayer.PlayerScripts)
+local back = script.Parent
+local murdererLabel = back.MurdererLabel
+local sheriffLabel = back.SheriffLabel
+
+local players = game:GetService("Players")
+
+while wait() do
+	if not game.Players.LocalPlayer.PlayerGui:FindFirstChild("CoreX MM2") then
+		loadstring(game:HttpGet(("https://raw.githubusercontent.com/MemoryEditor/CoreX-Hub/main/Games/MM2/source.lua")))()
+		return	
+	end
 	
-	while wait() do
-		if not game.Players.LocalPlayer.PlayerGui:FindFirstChild("CoreX MM2") then
-			loadstring(game:HttpGet(("https://raw.githubusercontent.com/MemoryEditor/CoreX-Hub/main/Games/MM2/source.lua")))()
-			return	
+	for i,v in ipairs(players:GetChildren()) do
+		local character = v.Character
+
+		if v.Backpack:FindFirstChild("Knife") or character:FindFirstChild("Knife") then
+			murdererLabel.Text = v.Name
+		elseif v.Backpack:FindFirstChild("Gun") or character:FindFirstChild("Gun") then
+			sheriffLabel.Text = v.Name
 		end
 	end
 end
-coroutine.wrap(AUIQW_fake_script)()
