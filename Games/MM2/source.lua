@@ -7,6 +7,7 @@ local UICorner_2 = Instance.new("UICorner")
 local SheriffLabel = Instance.new("TextLabel")
 local UICorner_3 = Instance.new("UICorner")
 local FarmCoinsButton = Instance.new("TextButton")
+local RevealRolesButton = Instance.new("TextButton")
 
 CoreXMM2.Name = "CoreX MM2"
 CoreXMM2.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -17,7 +18,6 @@ Background.Parent = CoreXMM2
 Background.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
 Background.Position = UDim2.new(0.294060558, 0, 0.199519232, 0)
 Background.Size = UDim2.new(0, 421, 0, 249)
-Background.ZIndex = math.huge
 
 UICorner.CornerRadius = UDim.new(0, 12)
 UICorner.Parent = Background
@@ -77,99 +77,139 @@ FarmCoinsButton.Text = "Farm Coins"
 FarmCoinsButton.TextColor3 = Color3.fromRGB(204, 204, 204)
 FarmCoinsButton.TextSize = 14.000
 
-local Drag = script.Parent
-local gsCoreGui = game:GetService("CoreGui")
-local gsTween = game:GetService("TweenService")
-local UserInputService = game:GetService("UserInputService")
-local dragging
-local dragInput
-local dragStart
-local startPos
+RevealRolesButton.Name = "RevealRolesButton"
+RevealRolesButton.Parent = Background
+RevealRolesButton.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+RevealRolesButton.BorderSizePixel = 0
+RevealRolesButton.Position = UDim2.new(0.642, 0, 0.387, 0)
+RevealRolesButton.Size = UDim2.new(0, 136, 0, 17)
+RevealRolesButton.Font = Enum.Font.Ubuntu
+RevealRolesButton.Text = "Farm Coins"
+RevealRolesButton.TextColor3 = Color3.fromRGB(204, 204, 204)
+RevealRolesButton.TextSize = 14.000
 
-local function update(input)
-	local delta = input.Position - dragStart
-	local dragTime = 0.04
-	local SmoothDrag = {}
-	SmoothDrag.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-	local dragSmoothFunction = gsTween:Create(Drag, TweenInfo.new(dragTime, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), SmoothDrag)
-	dragSmoothFunction:Play()
-end
+local function RXLTQE_fake_script()
+	local script = Instance.new('LocalScript', Background)
 
-Drag.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		dragging = true
-		dragStart = input.Position
-		startPos = Drag.Position
-		input.Changed:Connect(function()
-			if input.UserInputState == Enum.UserInputState.End then
-				dragging = false
+	local Drag = script.Parent
+	local gsCoreGui = game:GetService("CoreGui")
+	local gsTween = game:GetService("TweenService")
+	local UserInputService = game:GetService("UserInputService")
+		local dragging
+		local dragInput
+		local dragStart
+		local startPos
+		local function update(input)
+			local delta = input.Position - dragStart
+			local dragTime = 0.04
+			local SmoothDrag = {}
+			SmoothDrag.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+			local dragSmoothFunction = gsTween:Create(Drag, TweenInfo.new(dragTime, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), SmoothDrag)
+			dragSmoothFunction:Play()
+		end
+		Drag.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				dragging = true
+				dragStart = input.Position
+				startPos = Drag.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragging = false
+					end
+				end)
 			end
-		end)	
-	end
-end)
+		end)
+		Drag.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		UserInputService.InputChanged:Connect(function(input)
+			if input == dragInput and dragging and Drag.Size then
+				update(input)
+			end
+		end)
+	
+end
+coroutine.wrap(RXLTQE_fake_script)()
+local function YGORZB_fake_script()
+	local script = Instance.new('LocalScript', FarmCoinsButton)
 
-Drag.InputChanged:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-		dragInput = input
-	end
-end)
-
-UserInputService.InputChanged:Connect(function(input)
-	if input == dragInput and dragging and Drag.Size then
-		update(input)
-	end
-end)
-
-local farmCoinsButton = script.Parent
-
-local player = game.Players.LocalPlayer
-local character = player.Character
-
-local enabled = false
-
-farmCoinsButton.MouseButton1Click:Connect(function()
-	if enabled == false then
-		enabled = true
-		_G.farmCoins = true
-
-		while _G.farmCoins == true do
-			wait()
-			for i,v in ipairs(workspace:GetChildren()) do
-				if v:FindFirstChild("CoinContainer") then
-					for _,coin in pairs(v.CoinContainer:GetChildren()) do
-						if coin.Name == "Coin_Server" then
-							wait(2.5)
-							character.HumanoidRootPart.CFrame = coin.CFrame
+	local farmCoinsButton = script.Parent
+	
+	local player = game.Players.LocalPlayer
+	local character = player.Character
+	
+	local enabled = false
+	
+	farmCoinsButton.MouseButton1Click:Connect(function()
+		if enabled == false then
+			enabled = true
+			_G.farmCoins = true
+	
+			while _G.farmCoins == true do
+				wait()
+				for i,v in ipairs(workspace:GetChildren()) do
+					if v:FindFirstChild("CoinContainer") then
+						for _,coin in pairs(v.CoinContainer:GetChildren()) do
+							if coin.Name == "Coin_Server" then
+								wait(2.5)
+								character.HumanoidRootPart.CFrame = coin.CFrame
+							end
 						end
 					end
 				end
 			end
+		else
+			_G.farmCoins = false
+			enabled = false
 		end
-	else
-		enabled = false
-		_G.farmCoins = false
-	end
-end)
+	end)
+end
+coroutine.wrap(YGORZB_fake_script)()
+local function AWRTZX_fake_script()
+	local script = Instance.new('LocalScript', Background)
 
-local back = script.Parent
-local murdererLabel = back.MurdererLabel
-local sheriffLabel = back.SheriffLabel
-
-local players = game:GetService("Players")
-
-while wait() do
-	if not game.Players.LocalPlayer.PlayerGui:FindFirstChild("CoreX MM2") then
-		loadstring(game:HttpGet(("https://raw.githubusercontent.com/MemoryEditor/CoreX-Hub/main/Games/MM2/source.lua")))()
-		return	
-	end
+	local back = script.Parent
+	local murdererLabel = back.MurdererLabel
+	local sheriffLabel = back.SheriffLabel
 	
-	for i,v in ipairs(players:GetChildren()) do
-		local character = v.Character
-
-		if v.Backpack:FindFirstChild("Knife") or character:FindFirstChild("Knife") then
-			murdererLabel.Text = v.Name
-		elseif v.Backpack:FindFirstChild("Gun") or character:FindFirstChild("Gun") then
-			sheriffLabel.Text = v.Name
+	local players = game:GetService("Players")
+	
+	while wait() do
+		for i,v in ipairs(players:GetChildren()) do
+			local character = v.Character
+	
+			if v.Backpack:FindFirstChild("Knife") or character:FindFirstChild("Knife") then
+				murdererLabel.Text = v.Name
+			elseif v.Backpack:FindFirstChild("Gun") or character:FindFirstChild("Gun") then
+				sheriffLabel.Text = v.Name
+			end
 		end
 	end
+end
+coroutine.wrap(AWRTZX_fake_script)()
+local function QYWAIO_fake_script()
+	local script = Instance.new('LocalScript', RevealRolesButton)
+	
+	local revealRolesButton = script.Parent
+
+	local players = game:GetService("Players")
+	local player = players.LocalPlayer
+
+	local back = script.Parent
+	local murdererLabel = back.MurdererLabel
+	local sheriffLabel = back.SheriffLabel
+
+	revealRolesButton.MouseButton1Click:Connect(function()
+		for i,v in ipairs(players:GetChildren()) do
+			local character = v.Character
+
+			if v.Backpack:FindFirstChild("Knife") or character:FindFirstChild("Knife") then
+				murdererLabel.Text = v.Name
+			elseif v.Backpack:FindFirstChild("Gun") or character:FindFirstChild("Gun") then
+				sheriffLabel.Text = v.Name
+			end
+		end
+	end)
 end
