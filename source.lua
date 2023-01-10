@@ -13,9 +13,11 @@ local SupportedGames = Instance.new("Folder")
 local PrisonLife = Instance.new("TextButton")
 local MM2 = Instance.new("TextButton")
 local Title_3 = Instance.new("TextLabel")
+local UniversalHub = Instance.new("TextButton")
 
 CoreXLoader.Name = "CoreX Loader"
 CoreXLoader.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+CoreXLoader.Enabled = false
 CoreXLoader.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Background.Name = "Background"
@@ -147,7 +149,18 @@ Title_3.TextColor3 = Color3.fromRGB(204, 204, 204)
 Title_3.TextSize = 15.000
 Title_3.TextWrapped = true
 
-local function IQHGYNR_fake_script()
+UniversalHub.Name = "UniversalHub"
+UniversalHub.Parent = Background
+UniversalHub.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+UniversalHub.BorderSizePixel = 0
+UniversalHub.Position = UDim2.new(0.0368293263, 0, 0.897435963, 0)
+UniversalHub.Size = UDim2.new(0, 90, 0, 17)
+UniversalHub.Font = Enum.Font.Ubuntu
+UniversalHub.Text = "Universal Hub"
+UniversalHub.TextColor3 = Color3.fromRGB(204, 204, 204)
+UniversalHub.TextSize = 14.000
+
+local function XUIHGL_fake_script()
 	local script = Instance.new('LocalScript', Credits)
 
 	local credits = script.Parent
@@ -162,30 +175,48 @@ local function IQHGYNR_fake_script()
 		frame.Visible = false
 	end)
 end
-coroutine.wrap(IQHGYNR_fake_script)()
-local function NWXT_fake_script()
+coroutine.wrap(XUIHGL_fake_script)()
+local function YHTLZAQ_fake_script()
 	local script = Instance.new('LocalScript', SupportedGames)
 
 	local supportedGamesFolder = script.Parent
 	local MM2 = supportedGamesFolder.MM2
 	local PrisonLife = supportedGamesFolder["Prison Life"]
+	local UniversalHub = supportedGamesFolder.Parent.UniversalHub
 	
 	MM2.MouseButton1Click:Connect(function()
 		if game.PlaceId == 142823291 then
 			loadstring(game:HttpGet(("https://raw.githubusercontent.com/MemoryEditor/CoreX-Hub/main/Games/MM2/source.lua")))()
-			CoreXLoader:Destroy()
+			
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "CoreX Loader",
+				Text = "CoreX Loader has loaded the MM2 Script Hub."
+			})
 		end
 	end)
 	
 	PrisonLife.MouseButton1Click:Connect(function()
 		if game.PlaceId == 155615604 then
 			loadstring(game:HttpGet(("https://raw.githubusercontent.com/MemoryEditor/CoreX-Hub/main/Games/Prison%20Life/source.lua")))()
-			CoreXLoader:Destroy()
+			
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "CoreX Loader",
+				Text = "CoreX Loader has loaded the Prison Life Script Hub."
+			})
 		end
 	end)
+	
+	UniversalHub.MouseButton1Click:Connect(function()
+		loadstring(game:HttpGet(("https://raw.githubusercontent.com/MemoryEditor/CoreX-Hub/main/Games/universal.lua")))
+		
+		game.StarterGui:SetCore("SendNotification", {
+			Title = "CoreX Loader",
+			Text = "CoreX Loader has loaded the Universal Script Hub."
+		})
+	end)
 end
-coroutine.wrap(NWXT_fake_script)()
-local function GJGRIBR_fake_script()
+coroutine.wrap(YHTLZAQ_fake_script)()
+local function ZCJQ_fake_script()
 	local script = Instance.new('LocalScript', Background)
 
 	local Drag = script.Parent
@@ -228,4 +259,20 @@ local function GJGRIBR_fake_script()
 		end)
 	
 end
-coroutine.wrap(GJGRIBR_fake_script)()
+coroutine.wrap(ZCJQ_fake_script)()
+local function LSLI_fake_script() -- UniversalHub.LocalScript 
+	local script = Instance.new('LocalScript', UniversalHub)
+
+	local credits = script.Parent
+	local frame = credits.Parent.CreditsFrame
+	local close = frame.Close
+	
+	credits.MouseButton1Click:Connect(function()
+		frame.Visible = true
+	end)
+	
+	close.MouseButton1Click:Connect(function()
+		frame.Visible = false
+	end)
+end
+coroutine.wrap(LSLI_fake_script)()
