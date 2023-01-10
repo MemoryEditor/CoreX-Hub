@@ -17,7 +17,7 @@ local UniversalHub = Instance.new("TextButton")
 
 CoreXLoader.Name = "CoreX Loader"
 CoreXLoader.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-CoreXLoader.Enabled = false
+CoreXLoader.Enabled = true
 CoreXLoader.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Background.Name = "Background"
