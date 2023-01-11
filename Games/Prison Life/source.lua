@@ -61,7 +61,7 @@ commands.arrest = function(arguments)
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
 			local _p = string.lower(p.Name)
 			if string.match(_p, v, 1) then
-				local repeatTP = 10
+				local repeatTP = 5
 
 				while repeatTP >= 0 do
 					local Character = workspace[player.Name]
@@ -85,7 +85,6 @@ commands.looptaze = function(arguments)
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
 			local _p = string.lower(p.Name)
 			if string.match(_p, v, 1) then
-				print(p.Name)
 				table.insert(_G.tazePlayers, p.Name)
 				while table.find(_G.tazePlayers, p.Name) do
 					wait()
