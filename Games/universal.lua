@@ -22,7 +22,8 @@ commands.goto = function(arguments)
 	for i,v in ipairs(arguments) do
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
 			local _p = string.lower(p.Name)
-			if string.match(_p, v, 1) then
+			local _pDisplay = string.lower(p.DisplayName)
+			if string.match(_p, v, 1) or string.match(_pDisplay, v, 1) then
 				local Character = workspace[player.Name]
 				local HumanoidRootPart = Character.HumanoidRootPart
 				HumanoidRootPart.CFrame = workspace[p.Name].HumanoidRootPart.CFrame
