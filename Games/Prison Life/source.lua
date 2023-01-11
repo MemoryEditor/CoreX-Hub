@@ -20,7 +20,7 @@ end
 commands.taze = function(arguments)
 	for i,v in pairs(arguments) do
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
-			if string.match(p.Name, v, 1) then
+			if string.match(p.Name, v, 1) or string.match(p.DisplayName, v, 1) then
 				local Taser = game:GetService("Workspace")[player.Name]:WaitForChild("Taser")
 				print(Taser)
 
@@ -43,6 +43,8 @@ commands.taze = function(arguments)
 	end
 end
 
+--[[
+
 commands.goto = function(arguments)
 	for i,v in ipairs(arguments) do
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
@@ -56,11 +58,15 @@ commands.goto = function(arguments)
 	end
 end
 
+--]]
+
 commands.arrest = function(arguments)
 	for i,v in pairs(arguments) do
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
 			local _p = string.lower(p.Name)
-			if string.match(_p, v, 1) then
+			local _pDisplay = string.lower(p.DisplayName)
+			
+			if string.match(_p, v, 1) or string.match(_pDisplay, v, 1) then
 				local repeatTP = 5
 
 				while repeatTP >= 0 do
@@ -84,7 +90,9 @@ commands.looptaze = function(arguments)
 	for i,v in pairs(arguments) do
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
 			local _p = string.lower(p.Name)
-			if string.match(_p, v, 1) then
+			local _pDisplay = string.lower(p.DisplayName)
+			
+			if string.match(_p, v, 1) or string.match(_pDisplay, v, 1) then
 				table.insert(_G.tazePlayers, p.Name)
 				while table.find(_G.tazePlayers, p.Name) do
 					wait()
@@ -114,8 +122,9 @@ end
 commands.unlooptaze = function(arguments)
 	for i,v in pairs(arguments) do
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
-			if table.find(_G.tazePlayers, p.Name) then
-				local k = table.find(_G.tazePlayers, p.Name)
+			local _p = string.lower(p.Name)
+			if table.find(_G.tazePlayers, _p) then
+				local k = table.find(_G.tazePlayers, _p)
 				if k then
 					table.remove(_G.tazePlayers, k)
 				end
