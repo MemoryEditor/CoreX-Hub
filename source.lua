@@ -207,7 +207,7 @@ local function CJOKYBK_fake_script()
 	end)
 	
 	UniversalHub.MouseButton1Click:Connect(function()
-		loadstring(game:HttpGet(("https://raw.githubusercontent.com/MemoryEditor/CoreX-Hub/main/Games/universal.lua")))
+		loadstring(game:HttpGet(("https://raw.githubusercontent.com/MemoryEditor/CoreX-Hub/main/Games/universal.lua")))()
 		
 		game.StarterGui:SetCore("SendNotification", {
 			Title = "CoreX Loader",
