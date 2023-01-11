@@ -62,13 +62,13 @@ commands.arrest = function(arguments)
 			local _p = string.lower(p.Name)
 			if string.match(_p, v, 1) then
 				local repeatTP = 10
-				
+
 				while repeatTP >= 0 do
 					local Character = workspace[player.Name]
 					local HumanoidRootPart = Character.HumanoidRootPart
 					HumanoidRootPart.CFrame = workspace[p.Name].HumanoidRootPart.CFrame
 					repeatTP -= 1
-				
+
 					local A_1 = game:GetService("Workspace")[p.Name].Torso
 					local Event = game:GetService("Workspace").Remote.arrest
 					Event:InvokeServer(A_1)
@@ -80,7 +80,7 @@ end
 
 commands.looptaze = function(arguments)
 	_G.tazePlayers = {}
-	
+
 	for i,v in pairs(arguments) do
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
 			local _p = string.lower(p.Name)
@@ -89,7 +89,7 @@ commands.looptaze = function(arguments)
 				table.insert(_G.tazePlayers, p.Name)
 				while table.find(_G.tazePlayers, p.Name) do
 					wait()
-			
+
 					local Taser = game:GetService("Workspace")[player.Name]:WaitForChild("Taser")
 
 					local ReloadEvent = game:GetService("ReplicatedStorage").ReloadEvent
@@ -115,11 +115,11 @@ end
 commands.unlooptaze = function(arguments)
 	for i,v in pairs(arguments) do
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
-			local _p = string.lower(p.Name)
-			if string.match(_p, v, 1) then
-				if table.find(_G.tazePlayers, p.Name) then
-					table.remove(_G.tazePlayers, p.Name)
-				end	
+			if table.find(_G.tazePlayers, v) then
+				local k = table.find(_G.tazePlayers, v)
+				if k then
+					table.remove(_G.tazePlayers, k)
+				end
 			end
 		end
 	end
@@ -182,24 +182,24 @@ end
 
 player.Chatted:Connect(function(message, recipient)
 	message = string.lower(message)
-	
+
 	local split = message:split(" ")
-	
+
 	local splitPrefix = split[1]
-	
+
 	local command = splitPrefix:split(prefix)
-	
+
 	local commandName = command[2]
-	
+
 	if commands[commandName] then
 		local args = {}
-		
+
 		for i = 2, #split, 1 do
 			table.insert(args,split[i])
 		end
-		
+
 		print(message)
-		
+
 		commands[commandName](args)
 	end
 end)
