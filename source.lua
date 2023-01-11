@@ -17,7 +17,7 @@ local UniversalHub = Instance.new("TextButton")
 
 CoreXLoader.Name = "CoreX Loader"
 CoreXLoader.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-CoreXLoader.Enabled = true
+CoreXLoader.Enabled = false
 CoreXLoader.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Background.Name = "Background"
@@ -160,7 +160,7 @@ UniversalHub.Text = "Universal Hub"
 UniversalHub.TextColor3 = Color3.fromRGB(204, 204, 204)
 UniversalHub.TextSize = 14.000
 
-local function XUIHGL_fake_script()
+local function PTBJE_fake_script()
 	local script = Instance.new('LocalScript', Credits)
 
 	local credits = script.Parent
@@ -175,8 +175,8 @@ local function XUIHGL_fake_script()
 		frame.Visible = false
 	end)
 end
-coroutine.wrap(XUIHGL_fake_script)()
-local function YHTLZAQ_fake_script()
+coroutine.wrap(PTBJE_fake_script)()
+local function CJOKYBK_fake_script()
 	local script = Instance.new('LocalScript', SupportedGames)
 
 	local supportedGamesFolder = script.Parent
@@ -215,8 +215,8 @@ local function YHTLZAQ_fake_script()
 		})
 	end)
 end
-coroutine.wrap(YHTLZAQ_fake_script)()
-local function ZCJQ_fake_script()
+coroutine.wrap(CJOKYBK_fake_script)()
+local function QKVFECF_fake_script()
 	local script = Instance.new('LocalScript', Background)
 
 	local Drag = script.Parent
@@ -259,20 +259,4 @@ local function ZCJQ_fake_script()
 		end)
 	
 end
-coroutine.wrap(ZCJQ_fake_script)()
-local function LSLI_fake_script() -- UniversalHub.LocalScript 
-	local script = Instance.new('LocalScript', UniversalHub)
-
-	local credits = script.Parent
-	local frame = credits.Parent.CreditsFrame
-	local close = frame.Close
-	
-	credits.MouseButton1Click:Connect(function()
-		frame.Visible = true
-	end)
-	
-	close.MouseButton1Click:Connect(function()
-		frame.Visible = false
-	end)
-end
-coroutine.wrap(LSLI_fake_script)()
+coroutine.wrap(QKVFECF_fake_script)()
