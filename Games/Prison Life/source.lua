@@ -118,15 +118,14 @@ commands.unlooptaze = function(arguments)
 			local _p = string.lower(p.Name)
 			if string.match(_p, v, 1) then
 				if table.find(_G.tazePlayers, p.Name) then
-					local k = table.find(_G.tazePlayers, v)
-					if k then
-						table.remove(_G.tazePlayers, k)
-					end
+					table.remove(_G.tazePlayers, p.Name)
 				end	
 			end
 		end
 	end
 end
+
+--[[
 
 commands.opguns = function()
 	_G.giveGuns = true
@@ -151,8 +150,6 @@ commands.opguns = function()
 		AKGunStates.FireRate = 1
 	end
 end
-
---[[
 
 commands.loopreload = function(arguments)
 	_G.loopReloadWeapons = {}
