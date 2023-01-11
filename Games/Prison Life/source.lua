@@ -115,8 +115,8 @@ end
 commands.unlooptaze = function(arguments)
 	for i,v in pairs(arguments) do
 		for _,p in pairs(game:GetService("Players"):GetPlayers()) do
-			if table.find(_G.tazePlayers, v) then
-				local k = table.find(_G.tazePlayers, v)
+			if table.find(_G.tazePlayers, v.Name) then
+				local k = table.find(_G.tazePlayers, v.Name)
 				if k then
 					table.remove(_G.tazePlayers, k)
 				end
