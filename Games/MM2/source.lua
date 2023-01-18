@@ -7,7 +7,6 @@ local UICorner_2 = Instance.new("UICorner")
 local SheriffLabel = Instance.new("TextLabel")
 local UICorner_3 = Instance.new("UICorner")
 local FarmCoinsButton = Instance.new("TextButton")
-local RevealRolesButton = Instance.new("TextButton")
 
 CoreXMM2.Name = "CoreX MM2"
 CoreXMM2.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -77,18 +76,7 @@ FarmCoinsButton.Text = "Farm Coins"
 FarmCoinsButton.TextColor3 = Color3.fromRGB(204, 204, 204)
 FarmCoinsButton.TextSize = 14.000
 
-RevealRolesButton.Name = "RevealRolesButton"
-RevealRolesButton.Parent = Background
-RevealRolesButton.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
-RevealRolesButton.BorderSizePixel = 0
-RevealRolesButton.Position = UDim2.new(0.642, 0, 0.387, 0)
-RevealRolesButton.Size = UDim2.new(0, 136, 0, 17)
-RevealRolesButton.Font = Enum.Font.Ubuntu
-RevealRolesButton.Text = "Farm Coins"
-RevealRolesButton.TextColor3 = Color3.fromRGB(204, 204, 204)
-RevealRolesButton.TextSize = 14.000
-
-local function RXLTQE_fake_script()
+local function VCMDXKM_fake_script()
 	local script = Instance.new('LocalScript', Background)
 
 	local Drag = script.Parent
@@ -131,8 +119,8 @@ local function RXLTQE_fake_script()
 		end)
 	
 end
-coroutine.wrap(RXLTQE_fake_script)()
-local function YGORZB_fake_script()
+coroutine.wrap(VCMDXKM_fake_script)()
+local function NXWAUCT_fake_script()
 	local script = Instance.new('LocalScript', FarmCoinsButton)
 
 	local farmCoinsButton = script.Parent
@@ -162,54 +150,38 @@ local function YGORZB_fake_script()
 			end
 		else
 			_G.farmCoins = false
-			enabled = false
 		end
 	end)
 end
-coroutine.wrap(YGORZB_fake_script)()
-local function AWRTZX_fake_script()
+coroutine.wrap(NXWAUCT_fake_script)()
+local function AEGKQWZ_fake_script()
 	local script = Instance.new('LocalScript', Background)
-
-	local back = script.Parent
-	local murdererLabel = back.MurdererLabel
-	local sheriffLabel = back.SheriffLabel
-	
-	local players = game:GetService("Players")
-	
-	while wait() do
-		for i,v in ipairs(players:GetChildren()) do
-			local character = v.Character
-	
-			if v.Backpack:FindFirstChild("Knife") or character:FindFirstChild("Knife") then
-				murdererLabel.Text = v.Name
-			elseif v.Backpack:FindFirstChild("Gun") or character:FindFirstChild("Gun") then
-				sheriffLabel.Text = v.Name
-			end
-		end
-	end
-end
-coroutine.wrap(AWRTZX_fake_script)()
-local function QYWAIO_fake_script()
-	local script = Instance.new('LocalScript', RevealRolesButton)
-	
-	local revealRolesButton = script.Parent
 
 	local players = game:GetService("Players")
 	local player = players.LocalPlayer
-
+	
 	local back = script.Parent
 	local murdererLabel = back.MurdererLabel
 	local sheriffLabel = back.SheriffLabel
-
-	revealRolesButton.MouseButton1Click:Connect(function()
-		for i,v in ipairs(players:GetChildren()) do
-			local character = v.Character
-
-			if v.Backpack:FindFirstChild("Knife") or character:FindFirstChild("Knife") then
+	
+	for i,v in pairs(players:GetChildren()) do
+		local character = v.Character
+		
+		v.Backpack.ChildAdded:Connect(function(child)
+			if child.Name == "Knife" then
 				murdererLabel.Text = v.Name
-			elseif v.Backpack:FindFirstChild("Gun") or character:FindFirstChild("Gun") then
+			elseif child.Name == "Gun" then
 				sheriffLabel.Text = v.Name
 			end
-		end
-	end)
+		end)
+		
+		character.ChildAdded:Connect(function(child)
+			if child.Name == "Knife" then
+				murdererLabel.Text = v.Name
+			elseif child.Name == "Gun" then
+				sheriffLabel.Text = v.Name
+			end
+		end)
+	end
 end
+coroutine.wrap(AEGKQWZ_fake_script)()
