@@ -87,6 +87,7 @@ commands.loopgoto = function(arguments)
 
 	for i,v in ipairs(arguments) do
 		while _G.loopGoto == true do
+			wait()
 			for _,p in pairs(game:GetService("Players"):GetPlayers()) do
 				local _p = string.lower(p.Name)
 				local _pDisplay = string.lower(p.DisplayName)
